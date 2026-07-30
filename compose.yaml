@@ -2,7 +2,10 @@ name: product-catalog-matcher
 
 services:
   database:
-    image: postgres@sha256:ef257d85f76e48da1c64832459b59fcaba1a4dac97bf5d7450c77753542eee94
+    image: product-catalog-matcher-database:17.10
+    build:
+      context: .
+      dockerfile: docker/postgres/Dockerfile
     environment:
       POSTGRES_DB: catalog
       POSTGRES_USER: catalog
@@ -61,4 +64,3 @@ services:
 
 volumes:
   catalog-data:
-

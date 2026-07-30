@@ -1,6 +1,6 @@
 FROM ghcr.io/astral-sh/uv@sha256:5164bf84e7b4e2e08ce0b4c66b4a8c996a286e6959f72ac5c6e0a3c80e8cb04a AS uv
 
-FROM python@sha256:519591d6871b7bc437060736b9f7456b8731f1499a57e22e6c285135ae657bf7 AS builder
+FROM python@sha256:601d3d3797e90e2534782e69c85fafb7971b43f24c7b1b079b7e48dd435e458d AS builder
 
 COPY --from=uv /uv /usr/local/bin/uv
 WORKDIR /app
@@ -11,11 +11,10 @@ ENV UV_COMPILE_BYTECODE=1 \
 COPY pyproject.toml uv.lock README.md ./
 RUN uv sync --frozen --no-dev --no-install-project
 
-FROM python@sha256:519591d6871b7bc437060736b9f7456b8731f1499a57e22e6c285135ae657bf7 AS runtime
+FROM python@sha256:601d3d3797e90e2534782e69c85fafb7971b43f24c7b1b079b7e48dd435e458d AS runtime
 
-RUN groupadd --gid 10001 catalog \
-    && useradd --uid 10001 --gid catalog --no-create-home --home-dir /app \
-        --shell /usr/sbin/nologin catalog
+RUN addgroup -S -g 10001 catalog \
+    && adduser -S -D -H -u 10001 -G catalog catalog
 
 WORKDIR /app
 COPY --from=builder --chown=catalog:catalog /app/.venv /app/.venv

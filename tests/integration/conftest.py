@@ -15,7 +15,7 @@ from product_catalog_matcher.database import get_session
 from product_catalog_matcher.main import create_app
 
 PROJECT_ROOT = Path(__file__).parents[2]
-POSTGRES_IMAGE = "postgres@sha256:ef257d85f76e48da1c64832459b59fcaba1a4dac97bf5d7450c77753542eee94"
+POSTGRES_IMAGE = "postgres@sha256:742f40ea20b9ff2ff31db5458d127452988a2164df9e17441e191f3b72252193"
 
 
 @pytest.fixture(scope="session")

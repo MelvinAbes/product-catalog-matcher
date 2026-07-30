@@ -42,7 +42,7 @@ test-integration:
 	uv run pytest -m integration
 
 audit:
-	uv export --frozen --no-dev --no-emit-project -o /tmp/product-catalog-matcher-requirements.txt
-	uv run pip-audit -r /tmp/product-catalog-matcher-requirements.txt
+	uv export --quiet --frozen --all-extras --no-dev --no-emit-project -o /tmp/product-catalog-matcher-requirements.txt
+	uv run pip-audit --disable-pip --no-deps -r /tmp/product-catalog-matcher-requirements.txt
 
 check: lint type test
