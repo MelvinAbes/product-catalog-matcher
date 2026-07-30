@@ -32,7 +32,9 @@ from product_catalog_matcher.persistence.base import Base
 
 
 def enum_values(
-    enum_type: type[ImportRole | ImportStatus | IssueSeverity | MatchDecision | ReviewAction],
+    enum_type: type[
+        ImportRole | ImportStatus | IssueSeverity | MatchDecision | RecordStatus | ReviewAction
+    ],
 ) -> list[str]:
     return [item.value for item in enum_type]
 
@@ -128,7 +130,14 @@ class SupplierProduct(Base):
     )
     source_record_id: Mapped[str] = mapped_column(String(160))
     source_row_number: Mapped[int] = mapped_column(Integer)
-    record_status: Mapped[RecordStatus] = mapped_column(String(20))
+    record_status: Mapped[RecordStatus] = mapped_column(
+        Enum(
+            RecordStatus,
+            values_callable=enum_values,
+            name="record_status",
+            native_enum=False,
+        )
+    )
     raw_data: Mapped[dict[str, Any]] = mapped_column(JSON)
     name: Mapped[str] = mapped_column(String(500))
     normalized_name: Mapped[str] = mapped_column(String(500))

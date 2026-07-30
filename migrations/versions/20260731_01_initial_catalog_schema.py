@@ -135,7 +135,11 @@ def upgrade() -> None:
         sa.Column("import_batch_id", uuid_type, nullable=False),
         sa.Column("source_record_id", sa.String(length=160), nullable=False),
         sa.Column("source_row_number", sa.Integer(), nullable=False),
-        sa.Column("record_status", sa.String(length=20), nullable=False),
+        sa.Column(
+            "record_status",
+            sa.Enum("valid", "duplicate", name="record_status", native_enum=False),
+            nullable=False,
+        ),
         sa.Column("raw_data", sa.JSON(), nullable=False),
         sa.Column("name", sa.String(length=500), nullable=False),
         sa.Column("normalized_name", sa.String(length=500), nullable=False),
