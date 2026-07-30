@@ -1,11 +1,11 @@
 from sqlalchemy import CheckConstraint
 
-from product_catalog_matcher.persistence.base import Base
-from product_catalog_matcher.persistence.models import ImportRole, MatchDecision, ReviewAction
+from product_catalog_matcher.domain import ImportRole, MatchDecision, ReviewAction
+from product_catalog_matcher.persistence import models
 
 
 def test_schema_contains_expected_domain_tables() -> None:
-    assert set(Base.metadata.tables) == {
+    assert set(models.Supplier.metadata.tables) == {
         "canonical_products",
         "catalog_links",
         "import_batches",
@@ -19,7 +19,7 @@ def test_schema_contains_expected_domain_tables() -> None:
 
 
 def test_match_proposal_scores_are_constrained() -> None:
-    table = Base.metadata.tables["match_proposals"]
+    table = models.Supplier.metadata.tables["match_proposals"]
     constraints = {
         constraint.name
         for constraint in table.constraints

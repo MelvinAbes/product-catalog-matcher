@@ -1,6 +1,5 @@
 from datetime import datetime
 from decimal import Decimal
-from enum import StrEnum
 from typing import Any
 from uuid import UUID, uuid4
 
@@ -21,45 +20,20 @@ from sqlalchemy import (
 )
 from sqlalchemy.orm import Mapped, mapped_column
 
+from product_catalog_matcher.domain import (
+    ImportRole,
+    ImportStatus,
+    IssueSeverity,
+    MatchDecision,
+    RecordStatus,
+    ReviewAction,
+)
 from product_catalog_matcher.persistence.base import Base
 
 
-class ImportRole(StrEnum):
-    REFERENCE = "reference"
-    CANDIDATE = "candidate"
-
-
-class ImportStatus(StrEnum):
-    PENDING = "pending"
-    PROCESSING = "processing"
-    COMPLETED = "completed"
-    COMPLETED_WITH_ERRORS = "completed_with_errors"
-    FAILED = "failed"
-
-
-class IssueSeverity(StrEnum):
-    WARNING = "warning"
-    ERROR = "error"
-
-
-class MatchDecision(StrEnum):
-    AUTO_MATCH = "auto_match"
-    REVIEW = "review"
-    NO_MATCH = "no_match"
-
-
-class ReviewAction(StrEnum):
-    ACCEPTED = "accepted"
-    REJECTED = "rejected"
-    REASSIGNED = "reassigned"
-
-
-class RecordStatus(StrEnum):
-    VALID = "valid"
-    DUPLICATE = "duplicate"
-
-
-def enum_values(enum_type: type[StrEnum]) -> list[str]:
+def enum_values(
+    enum_type: type[ImportRole | ImportStatus | IssueSeverity | MatchDecision | ReviewAction],
+) -> list[str]:
     return [item.value for item in enum_type]
 
 
