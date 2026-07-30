@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Review queue · Catalog Matcher{% endblock %}
+{% block content %}
+  <section class="page-heading">
+    <div>
+      <p class="eyebrow">Human-in-the-loop</p>
+      <h1>Review queue</h1>
+      <p>Near ties and lower-confidence matches stay unlinked until a reviewer decides.</p>
+    </div>
+    <span class="queue-count">{{ reviews|length }} open</span>
+  </section>
+
+  {% if reviews %}
+    <section class="review-list">
+      {% for review in reviews %}
+        <a class="review-card" href="/review/{{ review.proposal_id }}">
+          <div class="review-score">
+            <span>Confidence</span>
+            <strong>{{ "%.1f"|format(review.score * 100) }}%</strong>
+            <small>Margin {{ "%.1f"|format((review.winning_margin or 0) * 100) }}%</small>
+          </div>
+          <div>
+            <span class="tag">Supplier record</span>
+            <h2>{{ review.source.name }}</h2>
+            <p>{{ review.source.brand or "Brand unavailable" }} · {{ review.source.category or "Uncategorised" }}</p>
+          </div>
+          <div class="arrow">→</div>
+          <div>
+            <span class="tag">Suggested catalog product</span>
+            <h2>{{ review.target.name }}</h2>
+            <p>{{ review.target.brand or "Brand unavailable" }} · {{ review.target.category or "Uncategorised" }}</p>
+          </div>
+        </a>
+      {% endfor %}
+    </section>
+  {% else %}
+    <section class="empty-state panel">
+      <strong>The review queue is clear</strong>
+      <p>New ambiguous match proposals will appear here after candidate imports are matched.</p>
+      <a href="/">Return to overview</a>
+    </section>
+  {% endif %}
+{% endblock %}
+

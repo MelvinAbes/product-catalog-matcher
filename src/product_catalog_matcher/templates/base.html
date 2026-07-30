@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light">
+    <title>{% block title %}Catalog Matcher{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/styles.css') }}">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/">
+        <span class="brand-mark">CM</span>
+        <span>
+          <strong>Catalog Matcher</strong>
+          <small>Supplier data operations</small>
+        </span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="/">Overview</a>
+        <a href="/review">Review queue</a>
+        <a href="/api/docs">API</a>
+      </nav>
+    </header>
+    <main>
+      {% block content %}{% endblock %}
+    </main>
+    <footer>
+      Deterministic matching is active. Semantic scoring is disabled by default.
+    </footer>
+    <script src="{{ url_for('static', path='/app.js') }}" defer></script>
+  </body>
+</html>
+

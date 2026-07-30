@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block title %}Overview · Catalog Matcher{% endblock %}
+{% block content %}
+  <section class="page-heading">
+    <div>
+      <p class="eyebrow">Operations overview</p>
+      <h1>Catalog matching at a glance</h1>
+      <p>Inspect imported supplier data, automatic links, and cases that need a decision.</p>
+    </div>
+    <a class="button button-primary" href="/review">Open review queue</a>
+  </section>
+
+  <section class="metric-grid" aria-label="Catalog metrics">
+    <article class="metric-card">
+      <span>Canonical products</span>
+      <strong>{{ summary.canonical_products }}</strong>
+      <small>Reference catalog</small>
+    </article>
+    <article class="metric-card">
+      <span>Supplier records</span>
+      <strong>{{ summary.supplier_products }}</strong>
+      <small>Across {{ summary.suppliers }} suppliers</small>
+    </article>
+    <article class="metric-card accent">
+      <span>Open reviews</span>
+      <strong>{{ summary.open_reviews }}</strong>
+      <small>Require a human decision</small>
+    </article>
+    <article class="metric-card">
+      <span>Automatic matches</span>
+      <strong>{{ summary.automatic_matches }}</strong>
+      <small>{{ summary.no_matches }} records unmatched</small>
+    </article>
+  </section>
+
+  <section class="panel">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">Recent activity</p>
+        <h2>Supplier imports</h2>
+      </div>
+    </div>
+    {% if summary.recent_imports %}
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>File</th>
+              <th>Supplier</th>
+              <th>Role</th>
+              <th>Status</th>
+              <th>Rows</th>
+              <th>Issues</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in summary.recent_imports %}
+              <tr>
+                <td>
+                  <strong>{{ item.file_name }}</strong>
+                  <small>{{ item.created_at.strftime("%Y-%m-%d %H:%M") }}</small>
+                </td>
+                <td>{{ item.supplier_code }}</td>
+                <td><span class="tag">{{ item.role }}</span></td>
+                <td><span class="status status-{{ item.status }}">{{ item.status.replace("_", " ") }}</span></td>
+                <td>{{ item.total_rows }}</td>
+                <td>{{ item.issue_count }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% else %}
+      <div class="empty-state">
+        <strong>No supplier feeds imported yet</strong>
+        <p>Use the REST API to register suppliers and import the demonstration feeds.</p>
+        <a href="/api/docs">Open API documentation</a>
+      </div>
+    {% endif %}
+  </section>
+{% endblock %}
+

@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block title %}Review proposal · Catalog Matcher{% endblock %}
+{% block content %}
+  <a class="back-link" href="/review">← Back to review queue</a>
+  <section class="page-heading compact">
+    <div>
+      <p class="eyebrow">Match proposal</p>
+      <h1>Compare product records</h1>
+      <p>Policy {{ review.policy_version }} · semantic factor {{ "used" if review.semantic_used else "not used" }}</p>
+    </div>
+    <div class="confidence">
+      <span>Confidence</span>
+      <strong>{{ "%.1f"|format(review.score * 100) }}%</strong>
+      <small>{{ "%.1f"|format((review.winning_margin or 0) * 100) }}% ahead of runner-up</small>
+    </div>
+  </section>
+
+  <section class="comparison-grid">
+    <article class="product-panel">
+      <span class="tag">Supplier record</span>
+      <h2>{{ review.source.name }}</h2>
+      <dl>
+        <dt>Brand</dt><dd>{{ review.source.brand or "—" }}</dd>
+        <dt>Category</dt><dd>{{ review.source.category or "—" }}</dd>
+        <dt>GTIN</dt><dd>{{ review.source.gtin or "—" }}</dd>
+        <dt>Part number</dt><dd>{{ review.source.manufacturer_part_number or "—" }}</dd>
+        <dt>Quantity</dt>
+        <dd>{{ review.source.pack_quantity or "—" }} × {{ review.source.unit_value or "—" }} {{ review.source.unit_code or "" }}</dd>
+      </dl>
+    </article>
+    <article class="product-panel target">
+      <span class="tag">Catalog target</span>
+      <h2>{{ review.target.name }}</h2>
+      <dl>
+        <dt>Brand</dt><dd>{{ review.target.brand or "—" }}</dd>
+        <dt>Category</dt><dd>{{ review.target.category or "—" }}</dd>
+        <dt>GTIN</dt><dd>{{ review.target.gtin or "—" }}</dd>
+        <dt>Part number</dt><dd>{{ review.target.manufacturer_part_number or "—" }}</dd>
+        <dt>Quantity</dt>
+        <dd>{{ review.target.pack_quantity or "—" }} × {{ review.target.unit_value or "—" }} {{ review.target.unit_code or "" }}</dd>
+      </dl>
+    </article>
+  </section>
+
+  <section class="detail-grid">
+    <article class="panel">
+      <div class="panel-heading">
+        <div>
+          <p class="eyebrow">Explanation</p>
+          <h2>Score factors</h2>
+        </div>
+      </div>
+      <div class="factor-list">
+        {% for factor in review.factors %}
+          <div class="factor">
+            <div>
+              <strong>{{ factor.name.replace("_", " ").title() }}</strong>
+              <span>{{ "%.1f"|format(factor.raw_score * 100) }}% · weight {{ "%.1f"|format(factor.weight * 100) }}%</span>
+            </div>
+            <div class="factor-track">
+              <span style="width: {{ factor.raw_score * 100 }}%"></span>
+            </div>
+            <small>Contribution {{ "%.1f"|format(factor.contribution * 100) }} points</small>
+          </div>
+        {% endfor %}
+      </div>
+    </article>
+
+    <article class="panel decision-panel">
+      <p class="eyebrow">Decision</p>
+      <h2>Resolve proposal</h2>
+      <form data-review-form data-proposal-id="{{ review.proposal_id }}">
+        <label>
+          Reviewer
+          <input name="reviewer" value="catalog-reviewer" minlength="2" maxlength="120" required>
+        </label>
+        <label>
+          Rationale
+          <textarea name="rationale" minlength="5" maxlength="500" required placeholder="Record the evidence behind this decision."></textarea>
+        </label>
+        <div class="decision-actions">
+          <button class="button button-primary" type="submit" name="action" value="accepted">Accept match</button>
+          <button class="button button-danger" type="submit" name="action" value="rejected">Reject</button>
+        </div>
+        <p class="form-status" role="status" aria-live="polite"></p>
+      </form>
+    </article>
+  </section>
+{% endblock %}
+

@@ -7,6 +7,7 @@ from product_catalog_matcher.catalog.review import (
     ReviewProposalNotFoundError,
     ReviewTargetNotFoundError,
 )
+from product_catalog_matcher.catalog.search import CanonicalProductNotFoundError
 from product_catalog_matcher.ingestion.parser import FeedStructureError
 from product_catalog_matcher.ingestion.service import (
     DuplicateFeedError,
@@ -166,5 +167,17 @@ def register_exception_handlers(application: FastAPI) -> None:
             status_code=409,
             problem_type="review_conflict",
             title="Review decision conflict",
+            detail=str(error),
+        )
+
+    @application.exception_handler(CanonicalProductNotFoundError)
+    def catalog_product_not_found(
+        _request: Request,
+        error: CanonicalProductNotFoundError,
+    ) -> JSONResponse:
+        return problem_response(
+            status_code=404,
+            problem_type="catalog_product_not_found",
+            title="Catalog product not found",
             detail=str(error),
         )
