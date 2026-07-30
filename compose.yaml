@@ -1,0 +1,64 @@
+name: product-catalog-matcher
+
+services:
+  database:
+    image: postgres@sha256:ef257d85f76e48da1c64832459b59fcaba1a4dac97bf5d7450c77753542eee94
+    environment:
+      POSTGRES_DB: catalog
+      POSTGRES_USER: catalog
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+    ports:
+      - "${PCM_DB_PORT:-5432}:5432"
+    volumes:
+      - catalog-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U catalog -d catalog"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+
+  application:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      PCM_DATABASE_URL: postgresql+psycopg://catalog:${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}@database:5432/catalog
+      PCM_ENVIRONMENT: production
+      PCM_LOG_FORMAT: json
+      PCM_SERVER_HOST: 0.0.0.0
+      PCM_SERVER_PORT: 8000
+      PCM_UPLOAD_MAX_BYTES: ${PCM_UPLOAD_MAX_BYTES:-5242880}
+      PCM_IMPORT_MAX_ROWS: ${PCM_IMPORT_MAX_ROWS:-5000}
+      PCM_AUTO_MATCH_THRESHOLD: ${PCM_AUTO_MATCH_THRESHOLD:-0.80}
+      PCM_REVIEW_THRESHOLD: ${PCM_REVIEW_THRESHOLD:-0.65}
+      PCM_MINIMUM_WINNING_MARGIN: ${PCM_MINIMUM_WINNING_MARGIN:-0.08}
+      PCM_SEMANTIC_MATCHING_ENABLED: "false"
+    depends_on:
+      database:
+        condition: service_healthy
+    ports:
+      - "${PCM_APP_PORT:-8000}:8000"
+    init: true
+    read_only: true
+    tmpfs:
+      - /tmp:size=64m,mode=1777
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health/ready', timeout=2)
+      interval: 10s
+      timeout: 3s
+      start_period: 20s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  catalog-data:
+

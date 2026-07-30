@@ -26,6 +26,8 @@ class Settings(BaseSettings):
     proposal_limit: int = Field(default=3, ge=1, le=20)
     semantic_matching_enabled: bool = False
     semantic_model: str = "sentence-transformers/all-MiniLM-L6-v2"
+    server_host: str = "127.0.0.1"
+    server_port: int = Field(default=8000, ge=1, le=65_535)
 
     @model_validator(mode="after")
     def validate_matching_thresholds(self) -> "Settings":
