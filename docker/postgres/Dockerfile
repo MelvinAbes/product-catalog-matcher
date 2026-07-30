@@ -9,3 +9,4 @@ COPY --from=gosu-build /out/gosu /usr/local/bin/gosu
 RUN chmod 0755 /usr/local/bin/gosu \
     && gosu nobody true
 
+USER postgres

@@ -112,6 +112,7 @@ jobs:
       - name: Verify runtime hardening
         run: |
           test "$(docker compose exec -T application id -u)" = "10001"
+          test "$(docker compose exec -T database id -u)" != "0"
           application_id="$(docker compose ps -q application)"
           test "$(docker inspect "${application_id}" --format '{{.HostConfig.ReadonlyRootfs}}')" = "true"
 
