@@ -1,0 +1,105 @@
+[project]
+name = "product-catalog-matcher"
+version = "0.1.0"
+description = "Explainable product matching and supplier data-quality service"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+license = "Apache-2.0"
+dependencies = [
+    "alembic>=1.18,<1.19",
+    "fastapi>=0.139,<0.140",
+    "jinja2>=3.1,<4",
+    "prometheus-client>=0.23,<0.24",
+    "psycopg[binary]>=3.2,<4",
+    "pydantic-settings>=2.12,<3",
+    "python-multipart>=0.0.22,<0.1",
+    "rapidfuzz>=3.14,<4",
+    "sqlalchemy>=2.0.51,<2.1",
+    "structlog>=25.5,<26",
+    "uvicorn[standard]>=0.41,<0.42",
+]
+
+[project.optional-dependencies]
+semantic = [
+    "sentence-transformers>=5.2,<6",
+]
+
+[dependency-groups]
+dev = [
+    "httpx2>=2.7,<3",
+    "mypy>=1.19,<2",
+    "pip-audit>=2.10,<3",
+    "pytest>=9.0,<10",
+    "pytest-cov>=7.0,<8",
+    "ruff>=0.14,<0.15",
+    "testcontainers[postgres]>=4.14,<5",
+    "types-jinja2>=2.11,<3",
+]
+
+[build-system]
+requires = ["uv_build>=0.11,<0.12"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "product_catalog_matcher"
+module-root = "src"
+
+[tool.pytest.ini_options]
+addopts = "-ra --strict-config --strict-markers"
+testpaths = ["tests"]
+markers = [
+    "integration: requires a local Docker daemon",
+]
+
+[tool.coverage.run]
+branch = true
+source = ["product_catalog_matcher"]
+
+[tool.coverage.report]
+exclude_also = [
+    "if TYPE_CHECKING:",
+    "raise NotImplementedError",
+]
+show_missing = true
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+plugins = ["pydantic.mypy"]
+packages = ["product_catalog_matcher"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = [
+    "A",
+    "ARG",
+    "B",
+    "C4",
+    "DTZ",
+    "E",
+    "F",
+    "FAST",
+    "I",
+    "N",
+    "PERF",
+    "PIE",
+    "PL",
+    "PT",
+    "PTH",
+    "RUF",
+    "S",
+    "SIM",
+    "T20",
+    "UP",
+    "W",
+]
+ignore = ["S101"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = ["ARG001", "PLR2004"]
+
+[tool.ruff.format]
+quote-style = "double"
