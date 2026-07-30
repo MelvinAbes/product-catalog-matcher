@@ -18,7 +18,7 @@ class Settings(BaseSettings):
     log_format: Literal["console", "json"] = "json"
     upload_max_bytes: int = Field(default=5 * 1024 * 1024, ge=1024)
     import_max_rows: int = Field(default=5_000, ge=1, le=100_000)
-    auto_match_threshold: float = Field(default=0.88, ge=0.0, le=1.0)
+    auto_match_threshold: float = Field(default=0.80, ge=0.0, le=1.0)
     review_threshold: float = Field(default=0.65, ge=0.0, le=1.0)
     minimum_winning_margin: float = Field(default=0.08, ge=0.0, le=1.0)
     candidate_similarity_floor: float = Field(default=0.25, ge=0.0, le=1.0)

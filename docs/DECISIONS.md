@@ -18,6 +18,11 @@ Exact identifiers and independent attributes contribute named factors. The polic
 both the top score and its margin over the runner-up. This makes ambiguous near-ties visible and
 prevents a high but non-unique score from being accepted automatically.
 
+The default automatic threshold is `0.80` with a minimum winning margin of `0.08`. The
+checked-in regression dataset showed that `0.88` routed clear identifier matches to review too
+often. Thresholds remain environment configuration because this small synthetic dataset is not
+evidence that the defaults transfer to a real supplier catalog.
+
 ## Bounded synchronous imports
 
 Imports run within a request with configured byte and row limits. This is easier to operate and
@@ -34,4 +39,3 @@ behind a semantic scorer protocol so tests use a deterministic substitute.
 
 Jinja templates and small browser-native scripts keep the review interface easy to inspect and
 avoid a separate frontend build. The REST API remains the authoritative workflow boundary.
-

@@ -19,6 +19,9 @@ dependencies = [
     "uvicorn[standard]>=0.41,<0.42",
 ]
 
+[project.scripts]
+catalog-evaluate = "product_catalog_matcher.evaluation:main"
+
 [project.optional-dependencies]
 semantic = [
     "sentence-transformers>=5.2,<6",

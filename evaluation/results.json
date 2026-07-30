@@ -1,0 +1,209 @@
+{
+  "metrics": {
+    "cases": 19,
+    "f1": 0.9333333333333333,
+    "false_negatives": 2,
+    "false_positives": 0,
+    "negative_cases": 3,
+    "positive_cases": 16,
+    "precision": 1.0,
+    "recall": 0.875,
+    "review_items": 3,
+    "true_negatives": 3,
+    "true_positives": 14
+  },
+  "policy_version": "deterministic-v1",
+  "predictions": [
+    {
+      "automated_reference_id": "R-001",
+      "candidate_id": "N-100",
+      "correct": true,
+      "decision": "auto_match",
+      "gold_reference_id": "R-001",
+      "score": 0.8720213350066672,
+      "top_reference_id": "R-001",
+      "winning_margin": 0.6594916871321918
+    },
+    {
+      "automated_reference_id": "R-002",
+      "candidate_id": "N-101",
+      "correct": true,
+      "decision": "auto_match",
+      "gold_reference_id": "R-002",
+      "score": 0.8035352532274082,
+      "top_reference_id": "R-002",
+      "winning_margin": 0.5570543649526627
+    },
+    {
+      "automated_reference_id": "R-003",
+      "candidate_id": "N-102",
+      "correct": true,
+      "decision": "auto_match",
+      "gold_reference_id": "R-003",
+      "score": 0.8603613029225081,
+      "top_reference_id": "R-003",
+      "winning_margin": 0.6479511926795806
+    },
+    {
+      "automated_reference_id": null,
+      "candidate_id": "N-103",
+      "correct": false,
+      "decision": "review",
+      "gold_reference_id": "R-004",
+      "score": 0.7673345476624165,
+      "top_reference_id": "R-004",
+      "winning_margin": 0.5645567698846387
+    },
+    {
+      "automated_reference_id": "R-005",
+      "candidate_id": "N-104",
+      "correct": true,
+      "decision": "auto_match",
+      "gold_reference_id": "R-005",
+      "score": 0.8722312409812409,
+      "top_reference_id": "R-005",
+      "winning_margin": 0.6461212114189077
+    },
+    {
+      "automated_reference_id": null,
+      "candidate_id": "N-105",
+      "correct": false,
+      "decision": "review",
+      "gold_reference_id": "R-006",
+      "score": 0.8564250095895666,
+      "top_reference_id": "R-006",
+      "winning_margin": 0.012258342922899845
+    },
+    {
+      "automated_reference_id": "R-008",
+      "candidate_id": "N-106",
+      "correct": true,
+      "decision": "auto_match",
+      "gold_reference_id": "R-008",
+      "score": 0.8982717103780411,
+      "top_reference_id": "R-008",
+      "winning_margin": 0.6768292152513354
+    },
+    {
+      "automated_reference_id": "R-009",
+      "candidate_id": "N-107",
+      "correct": true,
+      "decision": "auto_match",
+      "gold_reference_id": "R-009",
+      "score": 0.8145434191365178,
+      "top_reference_id": "R-009",
+      "winning_margin": 0.569345254232733
+    },
+    {
+      "automated_reference_id": null,
+      "candidate_id": "N-200",
+      "correct": true,
+      "decision": "no_match",
+      "gold_reference_id": null,
+      "score": 0.5985838779956427,
+      "top_reference_id": "R-001",
+      "winning_margin": 0.2834926133281069
+    },
+    {
+      "automated_reference_id": null,
+      "candidate_id": "N-201",
+      "correct": true,
+      "decision": "no_match",
+      "gold_reference_id": null,
+      "score": 0.568866020984665,
+      "top_reference_id": "R-004",
+      "winning_margin": 0.21335902797767192
+    },
+    {
+      "automated_reference_id": "R-010",
+      "candidate_id": "C-108",
+      "correct": true,
+      "decision": "auto_match",
+      "gold_reference_id": "R-010",
+      "score": 0.8908730158730158,
+      "top_reference_id": "R-010",
+      "winning_margin": 0.6906164822831489
+    },
+    {
+      "automated_reference_id": "R-011",
+      "candidate_id": "C-109",
+      "correct": true,
+      "decision": "auto_match",
+      "gold_reference_id": "R-011",
+      "score": 0.824087956021989,
+      "top_reference_id": "R-011",
+      "winning_margin": 0.6187134085421784
+    },
+    {
+      "automated_reference_id": "R-012",
+      "candidate_id": "C-110",
+      "correct": true,
+      "decision": "auto_match",
+      "gold_reference_id": "R-012",
+      "score": 0.9264090177133656,
+      "top_reference_id": "R-012",
+      "winning_margin": 0.7103587636196332
+    },
+    {
+      "automated_reference_id": "R-013",
+      "candidate_id": "C-111",
+      "correct": true,
+      "decision": "auto_match",
+      "gold_reference_id": "R-013",
+      "score": 0.887093403252774,
+      "top_reference_id": "R-013",
+      "winning_margin": 0.668476950261321
+    },
+    {
+      "automated_reference_id": "R-014",
+      "candidate_id": "C-112",
+      "correct": true,
+      "decision": "auto_match",
+      "gold_reference_id": "R-014",
+      "score": 0.8619007411577071,
+      "top_reference_id": "R-014",
+      "winning_margin": 0.6197999300913788
+    },
+    {
+      "automated_reference_id": "R-015",
+      "candidate_id": "C-113",
+      "correct": true,
+      "decision": "auto_match",
+      "gold_reference_id": "R-015",
+      "score": 0.8758518036142057,
+      "top_reference_id": "R-015",
+      "winning_margin": 0.6722430666721354
+    },
+    {
+      "automated_reference_id": "R-016",
+      "candidate_id": "C-114",
+      "correct": true,
+      "decision": "auto_match",
+      "gold_reference_id": "R-016",
+      "score": 0.8085326478793768,
+      "top_reference_id": "R-016",
+      "winning_margin": 0.571234857950008
+    },
+    {
+      "automated_reference_id": "R-017",
+      "candidate_id": "C-115",
+      "correct": true,
+      "decision": "auto_match",
+      "gold_reference_id": "R-017",
+      "score": 0.8361536459897115,
+      "top_reference_id": "R-017",
+      "winning_margin": 0.6425509523870179
+    },
+    {
+      "automated_reference_id": null,
+      "candidate_id": "C-202",
+      "correct": true,
+      "decision": "review",
+      "gold_reference_id": null,
+      "score": 0.6753063885267275,
+      "top_reference_id": "R-006",
+      "winning_margin": 0.010904183535762502
+    }
+  ],
+  "semantic_matching_enabled": false
+}

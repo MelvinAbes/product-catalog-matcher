@@ -26,6 +26,8 @@ class SupplierProductInput(BaseModel):
         "sku",
         "manufacturer_part_number",
         "description",
+        "pack_quantity",
+        "unit_value",
         "unit_code",
         mode="before",
     )

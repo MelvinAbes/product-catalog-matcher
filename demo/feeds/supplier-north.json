@@ -1,0 +1,91 @@
+{
+  "products": [
+    {
+      "item_id": "N-100",
+      "product_name": "Arabica whole coffee beans - 1 kg",
+      "maker": "Northwind Roasters",
+      "product_group": "Coffee",
+      "barcode": "1000 0000 0001 6",
+      "part_number": "NW ARAB 1K",
+      "items_per_pack": 1,
+      "net_content": 1,
+      "uom": "kg"
+    },
+    {
+      "item_id": "N-101",
+      "product_name": "Stainless travel cup 500ml",
+      "maker": "Kite Works",
+      "product_group": "Drinkware",
+      "barcode": "1000000000023",
+      "part_number": "kw-tm-500",
+      "items_per_pack": 1,
+      "net_content": 500,
+      "uom": "ml"
+    },
+    {
+      "item_id": "N-102",
+      "product_name": "BluePeak cordless computer mouse W2",
+      "maker": "Blue Peak",
+      "product_group": "Computer Accessories",
+      "barcode": "1000000000030",
+      "model_number": "BP MSE W2"
+    },
+    {
+      "item_id": "N-103",
+      "product_name": "65 watt USB C wall power adapter EU",
+      "maker": "Voltline",
+      "product_group": "Chargers",
+      "barcode": "1000000000047",
+      "model_number": "VL-C65-EU"
+    },
+    {
+      "item_id": "N-104",
+      "product_name": "TKL mechanical keyboard brown switches",
+      "maker": "Keystone Labs",
+      "product_group": "Keyboards",
+      "barcode": "1000000000054",
+      "model_number": "KS-TKL-BR"
+    },
+    {
+      "item_id": "N-105",
+      "product_name": "Paper Trail A5 lined notebook, 120 sheets",
+      "maker": "Paper Trail",
+      "product_group": "Notebooks"
+    },
+    {
+      "item_id": "N-106",
+      "product_name": "Extra virgin olive oil 750 ml",
+      "maker": "Solaro Foods",
+      "product_group": "Oils",
+      "barcode": "1000000000085",
+      "model_number": "SO-EVO-750",
+      "amount": 750,
+      "unit": "ml"
+    },
+    {
+      "item_id": "N-107",
+      "product_name": "Unsweetened oat beverage one litre",
+      "maker": "Meadow Pantry",
+      "product_group": "Plant Drinks",
+      "barcode": "1000000000092",
+      "model_number": "MP-OAT-U1",
+      "amount": 1,
+      "unit": "l"
+    },
+    {
+      "item_id": "N-200",
+      "product_name": "Northwind electric coffee grinder",
+      "maker": "Northwind Roasters",
+      "product_group": "Kitchen Appliances",
+      "model_number": "NW-GRIND-2"
+    },
+    {
+      "item_id": "N-201",
+      "product_name": "Voltline braided USB-C data cable",
+      "maker": "Voltline",
+      "product_group": "Cables",
+      "model_number": "VL-CABLE-2"
+    }
+  ]
+}
+

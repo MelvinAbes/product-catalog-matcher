@@ -1,0 +1,19 @@
+id,name,brand,category,gtin,mpn,pack_quantity,unit_value,unit_code
+R-001,Northwind Arabica Coffee Beans,Northwind Roasters,Grocery > Coffee,1000000000016,NW-ARAB-1K,1,1000,g
+R-002,Kite Works Steel Travel Mug,Kite Works,Home > Drinkware,1000000000023,KW-TM-500,1,500,ml
+R-003,Blue Peak Wireless Mouse,Blue Peak,Electronics > Computer Accessories,1000000000030,BP-MSE-W2,,,
+R-004,Voltline USB-C Charger 65W,Voltline,Electronics > Chargers,1000000000047,VL-C65-EU,,,
+R-005,Keystone Mechanical Keyboard TKL,Keystone Labs,Electronics > Keyboards,1000000000054,KS-TKL-BR,,,
+R-006,Paper Trail A5 Ruled Notebook 120 Pages,Paper Trail,Office > Notebooks,1000000000061,PT-A5-R120,1,1,count
+R-007,Paper Trail A5 Dotted Notebook 120 Pages,Paper Trail,Office > Notebooks,1000000000078,PT-A5-D120,1,1,count
+R-008,Solaro Extra Virgin Olive Oil,Solaro Foods,Grocery > Oils,1000000000085,SO-EVO-750,1,750,ml
+R-009,Meadow Oat Drink Unsweetened,Meadow Pantry,Grocery > Plant Drinks,1000000000092,MP-OAT-U1,1,1000,ml
+R-010,Auralight Noise Cancelling Headphones,Auralight,Electronics > Audio,1000000000108,AL-NC40,,,
+R-011,Luma Arc LED Desk Lamp,Luma Arc,Home > Lighting,1000000000115,LA-DL-8W,,,
+R-012,Stridewell Road Running Shoes,Stridewell,Sports > Running,1000000000122,SW-RUN-R2,,,
+R-013,Formline Non-Slip Yoga Mat,Formline,Sports > Yoga,1000000000139,FL-YM-6,,,
+R-014,Clearbrook Water Filter Cartridge 3 Pack,Clearbrook,Home > Water Filters,1000000000146,CB-WF-3,3,1,count
+R-015,Vitanook Vitamin C 500mg 60 Tablets,Vitanook,Health > Supplements,1000000000153,VN-C500-60,60,1,count
+R-016,Harbor Steel Water Bottle,Harbor Steel,Sports > Bottles,1000000000160,HS-WB-750,1,750,ml
+R-017,Linkspan HDMI Cable 2m,Linkspan,Electronics > Cables,1000000000177,LS-HDMI-2,,,
+
