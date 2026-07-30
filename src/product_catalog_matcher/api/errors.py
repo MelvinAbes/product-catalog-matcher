@@ -9,6 +9,11 @@ from product_catalog_matcher.ingestion.service import (
     SupplierCodeConflictError,
     SupplierNotFoundError,
 )
+from product_catalog_matcher.matching.service import (
+    BatchAlreadyMatchedError,
+    MatchBatchNotFoundError,
+    ReferenceBatchMatchError,
+)
 
 
 class ProblemDetail(BaseModel):
@@ -84,5 +89,41 @@ def register_exception_handlers(application: FastAPI) -> None:
             status_code=409,
             problem_type="supplier_code_conflict",
             title="Supplier code already exists",
+            detail=str(error),
+        )
+
+    @application.exception_handler(MatchBatchNotFoundError)
+    def match_batch_not_found(
+        _request: Request,
+        error: MatchBatchNotFoundError,
+    ) -> JSONResponse:
+        return problem_response(
+            status_code=404,
+            problem_type="match_batch_not_found",
+            title="Match batch not found",
+            detail=str(error),
+        )
+
+    @application.exception_handler(ReferenceBatchMatchError)
+    def reference_batch_match(
+        _request: Request,
+        error: ReferenceBatchMatchError,
+    ) -> JSONResponse:
+        return problem_response(
+            status_code=422,
+            problem_type="reference_batch",
+            title="Reference batch cannot be matched",
+            detail=str(error),
+        )
+
+    @application.exception_handler(BatchAlreadyMatchedError)
+    def batch_already_matched(
+        _request: Request,
+        error: BatchAlreadyMatchedError,
+    ) -> JSONResponse:
+        return problem_response(
+            status_code=409,
+            problem_type="batch_already_matched",
+            title="Batch already matched",
             detail=str(error),
         )

@@ -156,6 +156,16 @@ class SupplierProduct(Base):
     unit_value: Mapped[Decimal | None] = mapped_column(Numeric(12, 3))
     unit_code: Mapped[str | None] = mapped_column(String(20))
     fingerprint: Mapped[str] = mapped_column(String(64))
+    match_decision: Mapped[MatchDecision | None] = mapped_column(
+        Enum(
+            MatchDecision,
+            values_callable=enum_values,
+            name="supplier_match_decision",
+            native_enum=False,
+        )
+    )
+    match_policy_version: Mapped[str | None] = mapped_column(String(40))
+    matched_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
 
 

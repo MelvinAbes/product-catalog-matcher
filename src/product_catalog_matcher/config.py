@@ -21,6 +21,9 @@ class Settings(BaseSettings):
     auto_match_threshold: float = Field(default=0.88, ge=0.0, le=1.0)
     review_threshold: float = Field(default=0.65, ge=0.0, le=1.0)
     minimum_winning_margin: float = Field(default=0.08, ge=0.0, le=1.0)
+    candidate_similarity_floor: float = Field(default=0.25, ge=0.0, le=1.0)
+    candidate_limit: int = Field(default=20, ge=1, le=200)
+    proposal_limit: int = Field(default=3, ge=1, le=20)
     semantic_matching_enabled: bool = False
     semantic_model: str = "sentence-transformers/all-MiniLM-L6-v2"
 
@@ -28,6 +31,9 @@ class Settings(BaseSettings):
     def validate_matching_thresholds(self) -> "Settings":
         if self.review_threshold >= self.auto_match_threshold:
             msg = "review threshold must be lower than the automatic-match threshold"
+            raise ValueError(msg)
+        if self.proposal_limit > self.candidate_limit:
+            msg = "proposal limit cannot exceed the candidate limit"
             raise ValueError(msg)
         return self
 

@@ -11,3 +11,8 @@ def test_matching_thresholds_are_ordered() -> None:
 
 def test_semantic_matching_is_disabled_by_default() -> None:
     assert Settings().semantic_matching_enabled is False
+
+
+def test_proposal_limit_cannot_exceed_candidate_limit() -> None:
+    with pytest.raises(ValidationError, match="proposal limit"):
+        Settings(candidate_limit=2, proposal_limit=3)

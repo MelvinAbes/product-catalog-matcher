@@ -158,6 +158,19 @@ def upgrade() -> None:
         sa.Column("unit_value", sa.Numeric(precision=12, scale=3), nullable=True),
         sa.Column("unit_code", sa.String(length=20), nullable=True),
         sa.Column("fingerprint", sa.String(length=64), nullable=False),
+        sa.Column(
+            "match_decision",
+            sa.Enum(
+                "auto_match",
+                "review",
+                "no_match",
+                name="supplier_match_decision",
+                native_enum=False,
+            ),
+            nullable=True,
+        ),
+        sa.Column("match_policy_version", sa.String(length=40), nullable=True),
+        sa.Column("matched_at", timestamp, nullable=True),
         sa.Column("created_at", timestamp, server_default=sa.text("now()"), nullable=False),
         sa.CheckConstraint("source_row_number > 0", name=op.f("ck_supplier_products_source_row")),
         sa.ForeignKeyConstraint(
