@@ -2,6 +2,11 @@ from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 
+from product_catalog_matcher.catalog.review import (
+    ReviewConflictError,
+    ReviewProposalNotFoundError,
+    ReviewTargetNotFoundError,
+)
 from product_catalog_matcher.ingestion.parser import FeedStructureError
 from product_catalog_matcher.ingestion.service import (
     DuplicateFeedError,
@@ -125,5 +130,41 @@ def register_exception_handlers(application: FastAPI) -> None:
             status_code=409,
             problem_type="batch_already_matched",
             title="Batch already matched",
+            detail=str(error),
+        )
+
+    @application.exception_handler(ReviewProposalNotFoundError)
+    def review_not_found(
+        _request: Request,
+        error: ReviewProposalNotFoundError,
+    ) -> JSONResponse:
+        return problem_response(
+            status_code=404,
+            problem_type="review_not_found",
+            title="Review proposal not found",
+            detail=str(error),
+        )
+
+    @application.exception_handler(ReviewTargetNotFoundError)
+    def review_target_not_found(
+        _request: Request,
+        error: ReviewTargetNotFoundError,
+    ) -> JSONResponse:
+        return problem_response(
+            status_code=404,
+            problem_type="review_target_not_found",
+            title="Review target not found",
+            detail=str(error),
+        )
+
+    @application.exception_handler(ReviewConflictError)
+    def review_conflict(
+        _request: Request,
+        error: ReviewConflictError,
+    ) -> JSONResponse:
+        return problem_response(
+            status_code=409,
+            problem_type="review_conflict",
+            title="Review decision conflict",
             detail=str(error),
         )
