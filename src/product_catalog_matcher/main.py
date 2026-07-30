@@ -29,6 +29,14 @@ def create_app(
     application = FastAPI(
         title=application_settings.app_name,
         version="0.1.0",
+        description=(
+            "Import supplier feeds, inspect data quality, produce explainable catalog "
+            "matches, and resolve ambiguous proposals."
+        ),
+        license_info={
+            "name": "Apache License 2.0",
+            "identifier": "Apache-2.0",
+        },
         docs_url="/api/docs",
         openapi_url="/api/openapi.json",
     )

@@ -1,4 +1,4 @@
-# Retrieval and decision evaluation
+# Matching and decision evaluation
 
 The dataset contains 17 reference products and 19 supplier records. Sixteen supplier records
 have a known equivalent; three are deliberately related but non-equivalent products. Every
